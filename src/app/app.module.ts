@@ -8,6 +8,7 @@ import { ContentComponent } from './content/content.component';
 import { MenuComponent } from './menu/menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ManagerComponent } from './stock/manager/manager.component';
+import { StarsComponent } from './stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ManagerComponent } from './stock/manager/manager.component';
     ContentComponent,
     MenuComponent,
     SidebarComponent,
-    ManagerComponent
+    ManagerComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule
