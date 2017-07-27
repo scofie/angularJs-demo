@@ -2,8 +2,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-     Aj4开发demo
-      <small>使用AngularJs4.0开发Demo</small>
+     {{pageTitle}}
+      <small>{{pageDesc}}</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -14,7 +14,7 @@
   <!-- Main content -->
   <section class="content">
     <!-- Your Page Content Here -->
-    <app-manager></app-manager>
+    <router-outlet></router-outlet>
   </section>
   <!-- /.content -->
 </div>

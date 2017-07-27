@@ -9,6 +9,17 @@ import { MenuComponent } from './menu/menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ManagerComponent } from './stock/manager/manager.component';
 import { StarsComponent } from './stars/stars.component';
+import {Router, RouterModule, Routes} from "@angular/router";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormComponent } from './stock/form/form.component';
+
+
+const routeConfig:Routes = [
+  {path:'' , redirectTo:"dashboard",pathMatch:'full'},
+  {path:'dashboard' , component:DashboardComponent},
+  {path:'stock' , component:ManagerComponent},
+  {path:'stock/:id' , component:FormComponent},
+];
 
 @NgModule({
   declarations: [
@@ -19,10 +30,13 @@ import { StarsComponent } from './stars/stars.component';
     MenuComponent,
     SidebarComponent,
     ManagerComponent,
-    StarsComponent
+    StarsComponent,
+    DashboardComponent,
+    FormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routeConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
