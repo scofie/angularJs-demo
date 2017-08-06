@@ -12,13 +12,16 @@ import { StarsComponent } from './stars/stars.component';
 import {Router, RouterModule, Routes} from "@angular/router";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormComponent } from './stock/form/form.component';
+import {StockService} from "./stock/stock.service";
+import { StockFilterPipe } from './stock/stock-filter.pipe';
+import {FormsModule , ReactiveFormsModule} from "@angular/forms";
 
 
 const routeConfig:Routes = [
-  {path:'' , redirectTo:"dashboard",pathMatch:'full'},
-  {path:'dashboard' , component:DashboardComponent},
-  {path:'stock' , component:ManagerComponent},
-  {path:'stock/:id' , component:FormComponent},
+  {path: '' , redirectTo: "dashboard" , pathMatch: 'full'} ,
+  {path: 'dashboard' , component: DashboardComponent} ,
+  {path: 'stock' , component: ManagerComponent} ,
+  {path: 'stock/:id' , component: FormComponent} ,
 ];
 
 @NgModule({
@@ -32,13 +35,16 @@ const routeConfig:Routes = [
     ManagerComponent,
     StarsComponent,
     DashboardComponent,
-    FormComponent
+    FormComponent,
+    StockFilterPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routeConfig)
   ],
-  providers: [],
+  providers: [ StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
