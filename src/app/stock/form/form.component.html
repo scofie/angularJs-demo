@@ -1,40 +1,37 @@
 <div class="col-md-12">
   <div class="box box-info">
     <div class="box-header with-border"><h3 class="box-title">Stock 详情表单</h3></div>
-    <form class="form-horizontal" [formGroup]="stockForm">
+    <form class="form-horizontal" [formGroup]="formModel">
       <div class="box-body">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Stock Name</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" id="inputEmail3" name="name" placeholder="Stock name" value="{{stock.name}}">
+            <input type="text"  formControlName="name" class="form-control" id="inputEmail3" name="name" placeholder="Stock name" value="{{stock.name}}">
           </div>
         </div>
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">Stock Price</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" id="inputPassword3" name="price" placeholder="Stock price" value="{{stock.price}}">
+            <input type="text" formControlName="price" class="form-control" id="inputPassword3" name="price" placeholder="Stock price" value="{{stock.price}}">
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Stock Star</label>
           <div class="col-sm-10">
-            <app-stars [rating]="stock?.rating"></app-stars>
+            <app-stars [(rating)]="stock.rating" [readonly]="false" ></app-stars>
           </div>
         </div>
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">Stock Desc</label>
           <div class="col-sm-6">
-            <textarea class="form-control" rows="5" placeholder="Input Stock desc ..."> {{stock.desc}}</textarea>
+            <textarea class="form-control" rows="5" formControlName="desc" placeholder="Input Stock desc ..."> </textarea>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-              <label><input type="checkbox"> IT</label>
-              <label><input type="checkbox"> P2P</label>
-              <label><input type="checkbox"> 电商</label>
-              <label><input type="checkbox"> 直播</label>
+            <div class="checkbox" formArrayName="categories">
+              <label *ngFor="let categorie of categories;let i=index;"><input [formControlName]="i"  type="checkbox"> {{categorie}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             </div>
           </div>
         </div>
