@@ -15,6 +15,8 @@ import { FormComponent } from './stock/form/form.component';
 import {StockService} from "./stock/stock.service";
 import { StockFilterPipe } from './stock/stock-filter.pipe';
 import {FormsModule , ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {SocketService} from "app/header/socket.service";
 
 
 const routeConfig:Routes = [
@@ -41,10 +43,11 @@ const routeConfig:Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routeConfig)
   ],
-  providers: [ StockService],
+  providers: [ StockService,SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,17 +3,26 @@
     <div class="box-header with-border"><h3 class="box-title">Stock 详情表单</h3></div>
     <form class="form-horizontal" [formGroup]="formModel">
       <div class="box-body">
-        <div class="form-group">
+        <div class="form-group" [class.has-error]="formModel.get('name').touched && (formModel.hasError('minlength','name') || formModel.hasError('required','name')) ">
           <label for="inputEmail3" class="col-sm-2 control-label">Stock Name</label>
           <div class="col-sm-5">
             <input type="text"  formControlName="name" class="form-control" id="inputEmail3" name="name" placeholder="Stock name" value="{{stock.name}}">
           </div>
+          <span class="help-block" [class.hidden]="!formModel.hasError('required','name') || formModel.get('name').untouched">
+            股票名称是必填项
+          </span>
+          <span class="help-block" [class.hidden]="!formModel.hasError('minlength','name')">
+            请至少输入3个字
+          </span>
         </div>
-        <div class="form-group">
+        <div class="form-group" [class.has-error]="formModel.hasError('required','price')">
           <label for="inputPassword3" class="col-sm-2 control-label">Stock Price</label>
           <div class="col-sm-5">
             <input type="text" formControlName="price" class="form-control" id="inputPassword3" name="price" placeholder="Stock price" value="{{stock.price}}">
           </div>
+          <span class="help-block" [class.hidden]="!formModel.hasError('required','price')">
+            股票价格是必填项
+          </span>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Stock Star</label>
@@ -28,11 +37,14 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [class.has-error]="formModel.hasError('categoriesLength','categories') && formModel.get('categories').touched">
           <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox" formArrayName="categories">
               <label *ngFor="let categorie of categories;let i=index;"><input [formControlName]="i"  type="checkbox"> {{categorie}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             </div>
+            <span class="help-block" [class.hidden]="!formModel.hasError('categoriesLength','categories') && formModel.get('categories').untouched">
+            请至少选择一个类型
+          </span>
           </div>
         </div>
       </div>
@@ -40,7 +52,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-4">
         <button type="reset" class="btn btn-default" (click)="cancel()">Cancel</button>
-        <button type="submit" class="btn btn-info pull-right" (click)="save()">Save</button>
+        <button type="submit" class="btn btn-info pull-right" [disabled] = "formModel.invalid" (click)="save()">Save</button>
         </div>
       </div>
     </form>
